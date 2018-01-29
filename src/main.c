@@ -62,19 +62,19 @@ char *read_input(int error)
 
 void ia_turn(stick_t *stick)
 {
-	// stick->line = 0;
-	// stick->matches = 0;
+	int max = 0;
 
 	srand(time(NULL));
 	while (1) {
 		stick->line = (rand() % (stick->nb_line - 1 + 1) + 1);
-		//printf("OK = %d\n", stick->map[stick->line - 1]);
 		if (stick->map[stick->line - 1] != 0)
 			break;
 	}
-	stick->matches = ((rand() % (stick->map[stick->line] - 1)) + 1);
-	printf("line = %d -> map[line] = %d\n", stick->line, stick->map[stick->line - 1]);
-	printf("matches = %d\n", stick->matches);
+	if (stick->limit > stick->map[stick->line - 1])
+		max = stick->map[stick->line - 1];
+	else
+		max = stick->limit;
+	stick->matches = ((rand() % (max - 1 + 1) + 1));
 	stick->turn = 0;
 }
 
