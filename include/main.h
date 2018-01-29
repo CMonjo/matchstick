@@ -7,24 +7,15 @@
 
 #ifndef MAIN_H_
 	#define MAIN_H_
-	#include <SFML/Graphics.h>
-	#include <SFML/Window.h>
-	#include <SFML/System/Vector2.h>
-	#include <SFML/Audio.h>
-	#include <ncurses.h>
 	#include <stdio.h>
 	#include <unistd.h>
 	#include <stdarg.h>
-	#include <math.h>
-	#include <sys/types.h>
-	#include <sys/wait.h>
-	#include <sys/stat.h>
-	#include <dirent.h>
-	#include <time.h>
 	#include <stdlib.h>
-	#include <stdarg.h>
-	#include <string.h>
-	#include <fcntl.h>
-	#include "my.h"
-	#include "printf.h"
+	#include <time.h>
+	#include "tools.h"
+	#include "stick.h"
+	void display_map(stick_t *stick);
+	void free_stick(stick_t *stick);
+	int generate_matchstick(stick_t *stick, char **av);
+	void victory_game(stick_t *stick);
 #endif

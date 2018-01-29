@@ -6,13 +6,12 @@
 */
 
 #include <unistd.h>
+#include "tools.h"
 
-void	my_putchar(char c);
-
-int	my_put_nbr(int nb)
+int my_put_nbr(int nb)
 {
-	int	right;
-	int	left;
+	int right;
+	int left;
 
 	if (nb == -2147483648) {
 		write(1, "-2147483648", 11);
