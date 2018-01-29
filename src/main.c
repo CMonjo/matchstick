@@ -14,7 +14,7 @@ void modified_map(stick_t *stick)
 
 	if (line > stick->nb_line || matches > stick->map[line - 1]
 		|| matches > stick->limit || matches == 0) {
-		printf("error\n");
+		my_putstr("error\n");
 		stick->turn = 0;
 		stick->error = 1;
 		return;
@@ -29,34 +29,6 @@ void modified_map(stick_t *stick)
 	my_putstr(" match(es) from line ");
 	my_put_nbr(stick->line);
 	my_putstr("\n");
-}
-
-void display_error(int error)
-{
-	if (error == 1)
-		my_putstr("Line: ");
-	if (error == 2)
-		my_putstr("Matches: ");
-}
-
-char *read_input(int error)
-{
-	size_t read = 0;
-	int fd = 0;
-	char *buffer = NULL;
-
-	fd = getline(&buffer, &read, stdin);
-	if (buffer[fd - 1] == '\n')
-		buffer[fd - 1] = '\0';
-	if (my_str_isnum(buffer) != 1) {
-		my_putstr("Error: le buffer n'est pas un chiffre\n");
-		display_error(error);
-		read_input(error);
-	} else {
-		//printf("BUFF %s\n", buffer);
-		return (buffer);
-	}
-	return (buffer);
 }
 
 void ia_turn(stick_t *stick)
@@ -84,11 +56,8 @@ void game_loop(stick_t *stick)
 			my_putstr("Your turn:\n");
 		my_putstr("Line: ");
 		stick->line = my_getnbr(read_input(1));
-		//FAIRE ATTENTION AVEC LE GETLINE ET LA RECURSIVE EN CAS DERREUR LE BUFFER DE RETURN BUG
-		//printf("LINE == %s\n", stick->line);
 		my_putstr("Matches: ");
 		stick->matches = my_getnbr(read_input(2));
-		//printf("MATCH == %s\n", stick->matches);
 		stick->turn = 1;
 	} else {
 		my_putstr("AI’s turn...\n");

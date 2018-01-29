@@ -7,12 +7,13 @@
 
 CC	=	gcc
 
-CFLAGS	=	-g3 -Wextra -W -Wall -I ./include/
+CFLAGS	=	-Wextra -W -Wall -I ./include/
 
 LIB	=	-L lib/tools/ -ltools
 
 SRC	=	src/main.c		\
 		src/game_handling.c	\
+		src/input.c		\
 		src/display.c
 
 OBJ	=	$(SRC:.c=.o)
