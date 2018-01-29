@@ -25,12 +25,12 @@ void victory_game(stick_t *stick)
 	}
 	if (stick->map[i] == -1 && stick->turn == 1) {
 		my_putstr("You lost, too bad...\n");
-		stick->status = 1;
+		stick->status = 2;
 		return;
 	}
 	if (stick->map[i] == -1 && stick->turn == 0) {
 		my_putstr("I lost... snif... but I'll get you next time!!\n");
-		stick->status = 2;
+		stick->status = 1;
 		return;
 	}
 }
@@ -51,7 +51,6 @@ int generate_matchstick(stick_t *stick, char **av)
 		stick->map[i] = k;
 	stick->map[i] = -1;
 	stick->len = stick->map[i - 1];
-	stick->save = stick->map;
 	display_map(stick);
 	return (0);
 }

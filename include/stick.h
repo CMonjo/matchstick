@@ -10,7 +10,6 @@
 	#include "main.h"
 	typedef struct stick_s {
 		int *map;
-		int *save;
 		int nb_line;
 		int status;
 		int len;

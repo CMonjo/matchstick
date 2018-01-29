@@ -29,7 +29,6 @@ void modified_map(stick_t *stick)
 	my_putstr(" match(es) from line ");
 	my_put_nbr(stick->line);
 	my_putstr("\n");
-
 }
 
 void display_error(int error)
