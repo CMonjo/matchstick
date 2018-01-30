@@ -15,5 +15,5 @@
 	int my_getnbr(char const *str);
 	int my_str_isnum(char const *str);
 	int my_put_nbr(int nb);
-	char *get_next_line(int fd);
+	char *my_read(int fd);
 #endif

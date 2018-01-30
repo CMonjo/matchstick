@@ -57,7 +57,7 @@ char *rempl(char *new_str, char *temp, int a, int rd)
 	return (new_str);
 }
 
-char *get_next_line(int fd)
+char *my_read(int fd)
 {
 	char buffer[READ_SIZE + 1];
 	char *new_str = malloc(sizeof(char) * 1000);

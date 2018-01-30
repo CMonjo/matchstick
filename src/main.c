@@ -42,6 +42,20 @@ void ia_turn(stick_t *stick)
 	stick->turn = 0;
 }
 
+int game_loop(stick_t *stick)
+{
+	if (stick->turn == 0) {
+		if (player_turn(stick) == 84)
+			return (84);
+	} else {
+		my_putstr("AI’s turn...\n");
+		ia_turn(stick);
+	}
+	if (stick->error == 0)
+		modified_map(stick);
+	return (0);
+}
+
 int main(int ac, char **av)
 {
 	stick_t *stick = malloc(sizeof(stick_t));
@@ -55,7 +69,8 @@ int main(int ac, char **av)
 	stick->turn = 0;
 	stick->error = 0;
 	while (stick->status == 3) {
-		game_loop(stick);
+		if (game_loop(stick) == 84)
+			return (84);
 		if (stick->error == 0)
 			display_map(stick);
 		victory_game(stick);

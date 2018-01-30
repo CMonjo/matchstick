@@ -7,19 +7,32 @@
 
 #include "main.h"
 
-char *read_input(stick_t *stick)
+void fill_data(stick_t *stick, char *buffer, int type)
+{
+	if (type == 1) {
+		stick->line = my_getnbr(buffer);
+		check_input_line(stick);
+	}
+	if (type == 2) {
+		stick->matches = my_getnbr(buffer);
+		check_input_matches(stick);
+	}
+}
+
+int read_input(stick_t *stick, int type)
 {
 	char *buffer = NULL;
 
-	buffer = get_next_line(0);
+	buffer = my_read(0);
 	if (buffer == NULL)
-		return (NULL);
+		return (84);
 	if (my_str_isnum(buffer) != 1) {
 		my_putstr("Error: invalid input (positive number expected)\n");
 		stick->error = 1;
-	} else
-		return (buffer);
-	return (buffer);
+	}
+	else
+		fill_data(stick, buffer, type);
+	return (0);
 }
 
 void check_input_matches(stick_t *stick)
@@ -58,68 +71,17 @@ void check_input_line(stick_t *stick)
 	stick->error = 0;
 }
 
-void game_loop(stick_t *stick)
+int player_turn(stick_t *stick)
 {
-	if (stick->turn == 0) {
-		if (stick->error == 0)
-			my_putstr("Your turn:\n");
-		my_putstr("Line: ");
-		stick->line = my_getnbr(read_input(stick));
-		check_input_line(stick);
-		if (stick->error == 0) {
-			my_putstr("Matches: ");
-			stick->matches = my_getnbr(read_input(stick));
-			check_input_matches(stick);
-		}
-	} else {
-			my_putstr("AI’s turn...\n");
-			ia_turn(stick);
-		}
 	if (stick->error == 0)
-		modified_map(stick);
+		my_putstr("Your turn:\n");
+	my_putstr("Line: ");
+	if (read_input(stick, 1) == 84)
+		return (84);
+	if (stick->error == 0) {
+		my_putstr("Matches: ");
+		if (read_input(stick, 2) == 84)
+			return (84);
+	}
+	return (0);
 }
-
-// void display_error(int error)
-// {
-// 	if (error == 1)
-// 		my_putstr("Line: ");
-// 	if (error == 2)
-// 		my_putstr("Matches: ");
-// }
-//
-//
-//
-// char *read_input(int error)
-// {
-// 	char *buffer = NULL;
-//
-// 	buffer = get_next_line(0);
-// 	if (buffer == NULL)
-// 		return (NULL);
-// 	if (my_str_isnum(buffer) != 1) {
-// 		my_putstr("Error: invalid input (positive number expected)\n");
-// 		display_error(error);
-// 		read_input(error);
-// 	} else
-// 		return (buffer);
-// 	return (buffer);
-// }
-//
-// void game_loop(stick_t *stick)
-// {
-// 	if (stick->turn == 0) {
-// 		if (stick->error == 0)
-// 			my_putstr("Your turn:\n");
-// 		my_putstr("Line: ");
-// 		stick->line = my_getnbr(read_input(1));
-// 		check_input_line(stick);
-// 		my_putstr("Matches: ");
-// 		stick->matches = my_getnbr(read_input(2));
-// 		check_input_matches(stick);
-// 	} else {
-// 		my_putstr("AI’s turn...\n");
-// 		ia_turn(stick);
-// 	}
-// 	if (stick->error == 0)
-// 		modified_map(stick);
-// }
