@@ -32,6 +32,7 @@ int read_input(stick_t *stick, int type)
 	}
 	else
 		fill_data(stick, buffer, type);
+	free(buffer);
 	return (0);
 }
 
