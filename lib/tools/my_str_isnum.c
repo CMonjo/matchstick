@@ -13,6 +13,8 @@ int my_str_isnum(char const *str)
 
 	if (str[0] == '\0')
 		return (0);
+	if (str[0] == '-' || str[0] == '+')
+		i++;
 	while (str[i] < 58 && str[i] > 47) {
 		i++;
 		if (str[i] == '\0')

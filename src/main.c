@@ -12,13 +12,6 @@ void modified_map(stick_t *stick)
 	int line = stick->line;
 	int matches = stick->matches;
 
-	if (line > stick->nb_line || matches > stick->map[line - 1]
-		|| matches > stick->limit || matches == 0) {
-		my_putstr("error\n");
-		stick->turn = 0;
-		stick->error = 1;
-		return;
-	}
 	stick->map[line - 1] -= matches;
 	stick->error = 0;
 	if (stick->turn == 1)
@@ -47,23 +40,6 @@ void ia_turn(stick_t *stick)
 		max = stick->limit;
 	stick->matches = ((rand() % (max - 1 + 1) + 1));
 	stick->turn = 0;
-}
-
-void game_loop(stick_t *stick)
-{
-	if (stick->turn == 0) {
-		if (stick->error == 0)
-			my_putstr("Your turn:\n");
-		my_putstr("Line: ");
-		stick->line = my_getnbr(read_input(1));
-		my_putstr("Matches: ");
-		stick->matches = my_getnbr(read_input(2));
-		stick->turn = 1;
-	} else {
-		my_putstr("AI’s turn...\n");
-		ia_turn(stick);
-	}
-	modified_map(stick);
 }
 
 int main(int ac, char **av)

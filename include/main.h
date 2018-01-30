@@ -42,5 +42,10 @@
 	int generate_matchstick(stick_t *stick, char **av);
 	void victory_game(stick_t *stick);
 	void display_error(int error);
-	char *read_input(int error);
+	char *read_input(stick_t *stick);
+	void check_input_line(stick_t *stick);
+	void check_input_matches(stick_t *stick);
+	void game_loop(stick_t *stick);
+	void ia_turn(stick_t *stick);
+	void modified_map(stick_t *stick);
 #endif
