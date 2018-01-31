@@ -74,6 +74,8 @@ void check_input_line(stick_t *stick)
 
 int player_turn(stick_t *stick)
 {
+	stick->line = 0;
+	stick->matches = 0;
 	if (stick->error == 0)
 		my_putstr("Your turn:\n");
 	my_putstr("Line: ");

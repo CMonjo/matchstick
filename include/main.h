@@ -19,7 +19,7 @@
 
 	// DEFINES
 
-	#define READ_SIZE 10000
+	#define READ_SIZE 1
 
 	// STRUCTS
 
