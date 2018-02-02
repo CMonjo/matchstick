@@ -70,7 +70,7 @@ int main(int ac, char **av)
 	stick->error = 0;
 	while (stick->status == 3) {
 		if (game_loop(stick) == 84)
-			return (84);
+			return (0);
 		if (stick->error == 0)
 			display_map(stick);
 		victory_game(stick);

@@ -14,6 +14,7 @@ LIB	=	-L lib/tools/ -ltools
 SRC	=	src/main.c		\
 		src/game_handling.c	\
 		src/input.c		\
+		src/error.c		\
 		src/display.c
 
 OBJ	=	$(SRC:.c=.o)
