@@ -48,7 +48,7 @@ int game_loop(stick_t *stick)
 		if (player_turn(stick) == 84)
 			return (84);
 	} else {
-		my_putstr("AI’s turn...\n");
+		my_putstr("AI's turn...\n");
 		ia_turn(stick);
 	}
 	if (stick->error == 0)
