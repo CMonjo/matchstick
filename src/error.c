@@ -21,6 +21,8 @@ void check_input_error(stick_t *stick)
 		stick->error = 1;
 		return;
 	}
+	stick->error = 0;
+	stick->turn = 1;
 }
 
 void check_input_matches(stick_t *stick)
@@ -34,8 +36,6 @@ void check_input_matches(stick_t *stick)
 		return;
 	}
 	check_input_error(stick);
-	stick->error = 0;
-	stick->turn = 1;
 }
 
 void check_input_line(stick_t *stick)

@@ -44,8 +44,8 @@ int generate_matchstick(stick_t *stick, char **av)
 	stick->limit = my_getnbr(av[2]);
 	tmp = stick->nb_line;
 	stick->map = malloc(sizeof(int) * (tmp + 1));
-	if (stick->map == NULL || stick->limit < 1 || stick->nb_line < 1
-		|| stick->nb_line > 100)
+	if (stick->map == NULL || stick->limit < 1 || stick->nb_line < 2
+		|| stick->nb_line > 99)
 		return (1);
 	for (int k = 1; tmp != 0; k += 2, i++, tmp--)
 		stick->map[i] = k;

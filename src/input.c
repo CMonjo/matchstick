@@ -24,12 +24,12 @@ int read_input(stick_t *stick, int type)
 	char *buffer = NULL;
 
 	buffer = my_read(0);
-	if (buffer == NULL) {
+	if (buffer == NULL)
 		return (84);
-	}
 	if (my_str_isnum(buffer) != 1) {
 		my_putstr("Error: invalid input (positive number expected)\n");
 		stick->error = 1;
+		stick->turn = 0;
 	}
 	else
 		fill_data(stick, buffer, type);

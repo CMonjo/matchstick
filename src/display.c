@@ -7,10 +7,6 @@
 
 #include "main.h"
 
-//if colonne <= nb_lign - lign -> print ' '
-
-
-
 void display_map(stick_t *stick)
 {
 	for (int i = 0; i != (stick->len + 2); my_putstr("*"), i++);
