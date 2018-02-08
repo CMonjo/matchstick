@@ -26,7 +26,12 @@ int read_input(stick_t *stick, int type)
 	buffer = my_read(0);
 	if (buffer == NULL)
 		return (84);
-	if (my_str_isnum(buffer) != 1) {
+	if (buffer[0] == '\0') {
+		my_putstr("Error: this line is out of range\n");
+		stick->error = 1;
+		stick->turn = 0;
+	}
+	else if (my_str_isnum(buffer) != 1) {
 		my_putstr("Error: invalid input (positive number expected)\n");
 		stick->error = 1;
 		stick->turn = 0;
